@@ -19,9 +19,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val firebaseAuth = FirebaseAuth.getInstance();
-        binding.button.setOnClickListener {
-            val email = binding.textEmail.toString()
-            val senha = binding.textPassword.toString()
+        binding.buttonLogin.setOnClickListener {
+            val email = binding.textEmail.text.toString()
+            val senha = binding.textPassword.text.toString()
             firebaseAuth
                 .signInWithEmailAndPassword(email, senha)
                 .addOnCompleteListener { task ->
@@ -29,9 +29,14 @@ class MainActivity : AppCompatActivity() {
                         startActivity(Intent(this, HomeActivity::class.java))
                         finish()
                     } else {
-                        Toast.makeText(this, "Erro no login", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
                     }
                 }
+        }
+
+        binding.buttonCreate.setOnClickListener {
+            startActivity(Intent(this, SingUpActivity::class.java))
+            finish()
         }
     }
 }
