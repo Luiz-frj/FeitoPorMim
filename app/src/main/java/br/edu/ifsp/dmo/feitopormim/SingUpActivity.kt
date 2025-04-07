@@ -26,7 +26,7 @@ class SingUpActivity : AppCompatActivity() {
                     .createUserWithEmailAndPassword(email, senha)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            startActivity(Intent(this, HomeActivity::class.java))
+                            startActivity(Intent(this, ProfileActivity::class.java))
                             Toast.makeText(this, "Usuario criado", Toast.LENGTH_LONG).show()
                             finish()
                         } else {
