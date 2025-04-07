@@ -7,6 +7,9 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.dmo.feitopormim.databinding.ActivityProfileBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.firestore
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
@@ -20,7 +23,7 @@ class ProfileActivity : AppCompatActivity() {
             ActivityResultContracts.PickVisualMedia()) {
                 uri ->
             if (uri != null) {
-                binding.Profileimage.setImageURI(uri)
+                binding.profileImage.setImageURI(uri)
             } else {
                 Toast.makeText(this, "Nenhuma foto selecionada", Toast.LENGTH_LONG).show()
             }
@@ -34,9 +37,27 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         binding.save.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
-            Toast.makeText(this, "Usuario e foto salvos", Toast.LENGTH_LONG).show()
+            val firebaseAuth = FirebaseAuth.getInstance()
+            if (firebaseAuth.currentUser != null) {
+                val email = firebaseAuth.currentUser!!.email.toString()
+                val username = binding.textUserName.text.toString()
+                val nomeCompleto = binding.textNameComplete.text.toString()
+                val fotoPerfilString = Base64Converter.drawableToString(
+                    binding.profileImage.drawable
+                )
+                val db = Firebase.firestore
+                val dados = hashMapOf(
+                    "nomeCompleto" to nomeCompleto,
+                    "username" to username,
+                    "fotoPerfil" to fotoPerfilString
+                )
+                db.collection("usuarios").document(email)
+                    .set(dados)
+                    .addOnSuccessListener {
+                        startActivity(Intent(this, HomeActivity::class.java))
+                        finish()
+                    }
+            }
         }
     }
 
