@@ -16,6 +16,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val firebaseAuth = FirebaseAuth.getInstance();
+
+        if(firebaseAuth.currentUser != null){
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }
+
         binding.buttonLogin.setOnClickListener {
             val email = binding.textEmail.text.toString()
             val senha = binding.textPassword.text.toString()
