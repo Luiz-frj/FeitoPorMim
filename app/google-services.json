@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "600822691686",
+    "project_id": "feitopormim-3363c",
+    "storage_bucket": "feitopormim-3363c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600822691686:android:c518c064b521e61ca83aa7",
+        "android_client_info": {
+          "package_name": "br.edu.ifsp.dmo.feitopormim"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtQDacOcJzaN26eMZk4YDRXujjqyeUoEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
