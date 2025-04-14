@@ -32,7 +32,13 @@ class HomeActivity: AppCompatActivity() {
             }
 
         binding.buttonExit.setOnClickListener {
+            firebaseAuth.signOut();
             startActivity(Intent(this, MainActivity::class.java))
+            finish();
+        }
+
+        binding.goPost.setOnClickListener {
+            startActivity(Intent(this,PostActivity::class.java))
             finish();
         }
     }
