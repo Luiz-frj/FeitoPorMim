@@ -22,7 +22,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
-            android:foreground="@android:drawable/ic_menu_report_image" />
+            />
 
         <TextView
             android:id="@+id/descricaoPost"
