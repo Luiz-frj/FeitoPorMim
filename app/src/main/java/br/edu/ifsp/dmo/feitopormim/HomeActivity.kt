@@ -28,6 +28,11 @@ class HomeActivity: AppCompatActivity() {
             finish();
         }
 
+        binding.createPost.setOnClickListener {
+            startActivity(Intent(this, PostProfileActivity::class.java))
+            finish();
+        }
+
         binding.goFeed.setOnClickListener {
             val db = Firebase.firestore
             db.collection("posts").get()
