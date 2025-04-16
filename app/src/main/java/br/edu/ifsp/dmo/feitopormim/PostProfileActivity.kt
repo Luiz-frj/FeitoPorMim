@@ -40,7 +40,6 @@ class PostProfileActivity : AppCompatActivity() {
             val firebaseAuth = FirebaseAuth.getInstance()
 
             if (firebaseAuth.currentUser != null) {
-                val email = firebaseAuth.currentUser!!.email.toString()
                 val descricao = binding.descricao.text.toString()
                 val imageString = Base64Converter.drawableToString(
                     binding.picturePost.drawable
@@ -50,7 +49,7 @@ class PostProfileActivity : AppCompatActivity() {
                     "descricao" to descricao,
                     "imageString" to imageString
                 )
-                db.collection("posts").document(email)
+                db.collection("posts").document()
                     .set(dados)
                     .addOnSuccessListener {
                         startActivity(Intent(this, HomeActivity::class.java))
