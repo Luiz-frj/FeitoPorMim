@@ -19,12 +19,12 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="20dp" />
 
         <TextView
+            android:layout_margin="10dp"
             android:id="@+id/descricaoPost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,6 +37,19 @@
             android:text="Descrição"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp" />
+
+        <TextView
+            android:id="@+id/textLoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:textStyle="bold"
+            android:text="Cidade - Estado" />
 
 
     </RelativeLayout>

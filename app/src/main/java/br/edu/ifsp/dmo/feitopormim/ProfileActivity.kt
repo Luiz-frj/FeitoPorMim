@@ -26,6 +26,7 @@ class ProfileActivity : AppCompatActivity() {
                 binding.profileImage.setImageURI(uri)
             } else {
                 Toast.makeText(this, "Nenhuma foto selecionada", Toast.LENGTH_LONG).show()
+                //binding.profileImage.setImageURI(drawable/empty) -> mexer aqui
             }
         }
         binding.buttonChangePicture.setOnClickListener {
