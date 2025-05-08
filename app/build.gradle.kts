@@ -42,6 +42,10 @@ android {
 
 dependencies {
 
+    implementation("com.android.volley:volley:1.2.1")
+
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -52,10 +56,9 @@ dependencies {
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
     implementation(libs.firebase.firestore)
-    implementation(libs.volley)
-    implementation(libs.androidx.tools.core)
-    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.play.services.location)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.espresso.core)
 }
