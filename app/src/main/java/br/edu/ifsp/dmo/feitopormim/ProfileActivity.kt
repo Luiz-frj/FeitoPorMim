@@ -7,6 +7,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.dmo.feitopormim.databinding.ActivityProfileBinding
+import br.edu.ifsp.dmo.feitopormim.util.Base64Converter
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
@@ -26,7 +27,6 @@ class ProfileActivity : AppCompatActivity() {
                 binding.profileImage.setImageURI(uri)
             } else {
                 Toast.makeText(this, "Nenhuma foto selecionada", Toast.LENGTH_LONG).show()
-                //binding.profileImage.setImageURI(drawable/empty) -> mexer aqui
             }
         }
         binding.buttonChangePicture.setOnClickListener {
@@ -43,9 +43,13 @@ class ProfileActivity : AppCompatActivity() {
                 val email = firebaseAuth.currentUser!!.email.toString()
                 val username = binding.textUserName.text.toString()
                 val nomeCompleto = binding.textNameComplete.text.toString()
-                val fotoPerfilString = Base64Converter.drawableToString(
-                    binding.profileImage.drawable
-                )
+
+                val fotoPerfilString = if (binding.profileImage.drawable != null && binding.profileImage.drawable.constantState != resources.getDrawable(R.drawable.empty_profile).constantState) {
+                    Base64Converter.drawableToString(binding.profileImage.drawable)
+                } else{
+                    "default"
+                }
+
                 val db = Firebase.firestore
                 val dados = hashMapOf(
                     "nomeCompleto" to nomeCompleto,
@@ -57,6 +61,9 @@ class ProfileActivity : AppCompatActivity() {
                     .addOnSuccessListener {
                         startActivity(Intent(this, HomeActivity::class.java))
                         finish()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "Erro ao salvar dados: ${e.message}", Toast.LENGTH_SHORT).show()
                     }
             }
         }

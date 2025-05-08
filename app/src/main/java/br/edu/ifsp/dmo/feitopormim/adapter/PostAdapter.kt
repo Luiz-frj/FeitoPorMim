@@ -9,23 +9,26 @@ import androidx.recyclerview.widget.RecyclerView
 import br.edu.ifsp.dmo.feitopormim.R
 import br.edu.ifsp.dmo.feitopormim.model.Post
 
-class PostAdapter(private val posts: Array<Post>) :
-    RecyclerView.Adapter<PostAdapter.ViewHolder>() {
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
-    {
-        val imgPost : ImageView = view.findViewById(R.id.imageCard)
+class PostAdapter(private val posts: Array<Post>) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val imgPost : ImageView = view.findViewById(R.id.imgPost)
         val txtDescricao : TextView = view.findViewById(R.id.descricaoPost)
+        val txtLoc : TextView = view.findViewById(R.id.textLocPost)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.post_item, parent, false)
         return ViewHolder(view)
     }
+
     override fun getItemCount(): Int {
         return posts.size
     }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.txtDescricao.text = posts[position].getDescricao()
         holder.imgPost.setImageBitmap(posts[position].getFoto())
+        holder.txtLoc.text = posts[position].getLoc()
     }
 }

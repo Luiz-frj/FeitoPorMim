@@ -33,7 +33,7 @@ class PostActivity : AppCompatActivity(){
                         response.getString("foto")
                 val imageRequest = ImageRequest(urlImage,
                     { response ->
-                        binding.imagePost.setImageBitmap(response)
+                        binding.userImage.setImageBitmap(response)
                     },
                     0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
                     { error ->

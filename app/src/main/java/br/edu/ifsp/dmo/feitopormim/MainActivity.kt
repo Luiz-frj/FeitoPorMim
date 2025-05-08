@@ -25,16 +25,21 @@ class MainActivity : AppCompatActivity() {
         binding.buttonLogin.setOnClickListener {
             val email = binding.textEmail.text.toString()
             val senha = binding.textPassword.text.toString()
-            firebaseAuth
-                .signInWithEmailAndPassword(email, senha)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        startActivity(Intent(this, HomeActivity::class.java))
-                        finish()
-                    } else {
-                        Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
+
+            if(email == null || email.isEmpty() || senha == null || senha.isEmpty()){
+                Toast.makeText(this, "Informe os dados corretamente", Toast.LENGTH_LONG).show()
+            }else{
+                firebaseAuth
+                    .signInWithEmailAndPassword(email, senha)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            startActivity(Intent(this, HomeActivity::class.java))
+                            finish()
+                        } else {
+                            Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
+                        }
                     }
-                }
+            }
         }
 
         binding.buttonCreate.setOnClickListener {

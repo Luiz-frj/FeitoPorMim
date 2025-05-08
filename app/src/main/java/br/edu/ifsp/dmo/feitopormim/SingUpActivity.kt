@@ -21,20 +21,24 @@ class SingUpActivity : AppCompatActivity() {
             val senha = binding.textPassword.text.toString()
             val senhaConfirmada = binding.textPasswordConfirm.text.toString()
 
-            if(senha == senhaConfirmada){
-                firebaseAuth
-                    .createUserWithEmailAndPassword(email, senha)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            startActivity(Intent(this, ProfileActivity::class.java))
-                            Toast.makeText(this, "Usuario criado", Toast.LENGTH_LONG).show()
-                            finish()
-                        } else {
-                            Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
+            if(email == null || email.isEmpty() || senha == null || senha.isEmpty() || senhaConfirmada == null || senhaConfirmada.isEmpty()){
+                Toast.makeText(this, "Informe os dados corretamente", Toast.LENGTH_LONG).show()
+            }else{
+                if(senha == senhaConfirmada){
+                    firebaseAuth
+                        .createUserWithEmailAndPassword(email, senha)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                startActivity(Intent(this, ProfileActivity::class.java))
+                                Toast.makeText(this, "Usuario criado", Toast.LENGTH_LONG).show()
+                                finish()
+                            } else {
+                                Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
+                            }
                         }
-                    }
-            } else{
+                } else{
                     Toast.makeText(this, "As SENHAS não são iguais", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
