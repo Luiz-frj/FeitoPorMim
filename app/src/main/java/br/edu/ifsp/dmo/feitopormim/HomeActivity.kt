@@ -70,11 +70,11 @@ class HomeActivity: AppCompatActivity() {
     private fun carregarMaisPosts() {
         val db = Firebase.firestore
         val postsRef = db.collection("posts")
-            .orderBy("data_criacao", Query.Direction.DESCENDING)
+            .orderBy("dataCriacao", Query.Direction.DESCENDING)
             .limit(5)
 
         val query = if (ultimoTimestamp != null) {
-            postsRef.whereLessThan("data_criacao", ultimoTimestamp!!)
+            postsRef.whereLessThan("dataCriacao", ultimoTimestamp!!)
         } else {
             postsRef
         }
@@ -91,7 +91,7 @@ class HomeActivity: AppCompatActivity() {
                         posts.add(Post(descricao, bitmap, localizacao))
                     }
 
-                    ultimoTimestamp = result.documents.last().getTimestamp("data_criacao")
+                    ultimoTimestamp = result.documents.last().getTimestamp("dataCriacao")
 
                     val adapter = PostAdapter(posts.toTypedArray())
                     binding.recycleView.layoutManager = LinearLayoutManager(this)
